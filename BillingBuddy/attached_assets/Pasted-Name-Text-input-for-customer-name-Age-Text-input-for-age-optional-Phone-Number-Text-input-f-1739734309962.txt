@@ -1,0 +1,41 @@
+Name: Text input for customer name.
+Age: Text input for age (optional).
+Phone Number: Text input for contact number.
+Address: Text area for full address.
+Invoice Number: This should be automatically generated and incremented for each new bill. You'll need a way to store the last used number and increment it.
+Date: Automatically populate with the current date, but allow the user to change it if needed.
+Product/Service Details Section (Crucial Part):
+
+Particulars: A dropdown or searchable list of items/services you offer. This makes data entry faster and more consistent. You'll need a database or file to store your product/service list.
+Batch: Text input for batch number (if applicable).
+Exp. (Expiry): Date input for expiry date (if applicable).
+MRP (Maximum Retail Price): This should be automatically filled when the user selects a product from the "Particulars" dropdown. It should be retrieved from your product/service database.
+Qty. (Quantity): Number input for quantity.
+Dis% (Discount Percentage): Number input for discount percentage.
+GST% (GST Percentage): This should also be automatically filled based on the selected product (from your database).
+Rate: This needs to be calculated: Rate = MRP - (MRP * Dis% / 100). This should update automatically when quantity or discount changes.
+Calculation Section:
+
+Sub-Total: Calculated as SUM(Rate * Qty) for each item.
+GST: Calculated as SUM((Rate * Qty) * (GST% / 100)) for each item.
+Grand Total: Calculated as Sub-Total + GST.
+Terms & Conditions:
+
+A text area to display your standard terms and conditions.
+Footer:
+
+Space for signature and authorization details.
+Technical Implementation (Conceptual):
+
+Programming Language: Choose a language suitable for creating a user interface (UI) and handling calculations. Python with libraries like Tkinter, PyQt, or web frameworks like Flask/Django are good options. JavaScript for web-based solutions is another strong contender.
+Database: You'll need a database (even a simple file like CSV or JSON) to store:
+Product/service information (name, MRP, GST%).
+Customer details (if you want to save them).
+Invoice history (if you want to be able to retrieve old invoices).
+UI Design: Design the layout to match your example format. Use labels, text boxes, dropdowns, and tables for data entry and display.
+Event Handling: Implement event handlers to:
+Update the "Rate" when "Qty" or "Dis%" changes.
+Populate "MRP" and "GST%" when a product is selected.
+Recalculate "Sub-Total," "GST," and "Grand Total" whenever any relevant value changes.
+Generate a new invoice number when a new bill is created.
+Printing/Saving: Add functionality to print the invoice or save it as a PDF or other format.

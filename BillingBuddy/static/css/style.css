@@ -1,0 +1,167 @@
+body {
+    background-color: #f8f9fa;
+    font-size: 14px;
+}
+
+.invoice-container {
+    background: white;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+@media print {
+    body {
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
+    .invoice-container {
+        width: 210mm;
+        height: 297mm;
+        padding: 20mm;
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+    }
+    .d-print-none {
+        display: none !important;
+    }
+    .container {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+        margin: 0;
+    }
+    .nav-tabs, .btn {
+        display: none !important;
+    }
+}
+
+/* Plain form controls */
+.form-control-plain {
+    border: none;
+    background: transparent;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.form-control-plain:focus {
+    outline: none;
+    background: #f8f9fa;
+}
+
+/* Table styles */
+.table {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.table th, .table td {
+    padding: 4px 8px;
+    vertical-align: middle;
+    border: 1px solid #000;
+}
+
+.table thead th {
+    background: #f8f9fa;
+    font-weight: normal;
+    text-align: center;
+}
+
+/* Custom borders */
+.border-dark {
+    border-color: #000 !important;
+}
+
+/* Text styles */
+h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 8px 0;
+}
+
+h5 {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+p {
+    margin-bottom: 0.3rem;
+}
+
+/* Navigation */
+.nav-tabs {
+    margin-bottom: 20px;
+}
+
+/* Products table */
+#productsTable {
+    margin-top: 10px;
+}
+
+#productsTable th {
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+#productsTable th button {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+/* Medicine list colors */
+.expired {
+    color: #000 !important;
+}
+
+.expiring-soon {
+    color: #dc3545 !important;
+}
+
+.normal {
+    color: #198754 !important;
+}
+
+/* Print page breaks */
+@media print {
+    .page-break {
+        page-break-before: always;
+    }
+
+    .avoid-break {
+        page-break-inside: avoid;
+    }
+}
+
+/* Table input widths */
+#productsTable .particulars {
+    width: calc(100% - 30px);
+}
+
+/* Responsive table */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media print {
+    .table-responsive {
+        overflow: visible;
+    }
+}

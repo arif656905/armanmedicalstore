@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Paracetamol 500mg",
+        "mrp": 15.00,
+        "gst": 12
+    },
+    {
+        "name": "Aspirin 300mg",
+        "mrp": 25.00,
+        "gst": 12
+    },
+    {
+        "name": "Bandage Roll",
+        "mrp": 45.00,
+        "gst": 18
+    },
+    {
+        "name": "Cotton Roll 100g",
+        "mrp": 35.00,
+        "gst": 5
+    }
+]

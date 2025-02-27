@@ -1,0 +1,254 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs d-print-none">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#invoice">Invoice</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#medicines">Medicine List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#customers">Customer Records</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <!-- Invoice Tab -->
+        <div class="tab-pane fade show active" id="invoice">
+            <!-- Action Buttons at Top -->
+            <div class="d-print-none text-end mt-3 mb-3">
+                <button class="btn btn-success" id="printInvoice">
+                    <i class="fas fa-print"></i> Print Invoice
+                </button>
+                <button class="btn btn-danger ms-2" id="resetInvoice">
+                    <i class="fas fa-redo"></i> Reset Invoice
+                </button>
+            </div>
+
+            <div class="invoice-container avoid-break">
+                <!-- Header -->
+                <div class="header text-center border-bottom border-dark">
+                    <h4 class="mb-0">GST TEX INVOICE</h4>
+                </div>
+
+                <!-- Store and Customer Info -->
+                <div class="row border-bottom border-dark">
+                    <!-- Store Details -->
+                    <div class="col-6 border-end border-dark p-2">
+                        <h5 class="mb-2">ARMANN MEDICAL STORE</h5>
+                        <p class="mb-1">KAIL ROAD CHANDUALI 232104,U.P.</p>
+                        <p class="mb-1">Ph. No &nbsp;&nbsp;:9936932486, 9648144890</p>
+                        <p class="mb-1">D.L. No &nbsp;&nbsp;: UP67200000113, UP67210000113</p>
+                    </div>
+                    <!-- Customer Details -->
+                    <div class="col-6 p-2">
+                        <div class="row mb-2">
+                            <div class="col-3">NAME</div>
+                            <div class="col-1">:</div>
+                            <div class="col-8">
+                                <input type="text" class="form-control-plain" id="customerName" required>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">AGE</div>
+                            <div class="col-1">:</div>
+                            <div class="col-8">
+                                <input type="text" class="form-control-plain" id="customerAge">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">Ph. No</div>
+                            <div class="col-1">:</div>
+                            <div class="col-8">
+                                <input type="text" class="form-control-plain" id="customerPhone" required>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">Add</div>
+                            <div class="col-1">:</div>
+                            <div class="col-8">
+                                <input type="text" class="form-control-plain" id="customerAddress">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Invoice Details -->
+                <div class="row border-bottom border-dark">
+                    <div class="col-12">
+                        <div class="row p-2">
+                            <div class="col">Inv.No. :</div>
+                            <div class="col">
+                                <input type="text" class="form-control-plain" id="invoiceNumber">
+                            </div>
+                            <div class="col">Time :</div>
+                            <div class="col">
+                                <input type="time" class="form-control-plain" id="invoiceTime">
+                            </div>
+                            <div class="col">Date :</div>
+                            <div class="col">
+                                <input type="date" class="form-control-plain" id="invoiceDate">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Table -->
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%">
+                                    Particulars
+                                    <button class="btn btn-sm btn-primary float-end d-print-none" id="addRow">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </th>
+                                <th style="width: 12%">Batch</th>
+                                <th style="width: 12%">Exp.</th>
+                                <th style="width: 10%">Mrp</th>
+                                <th style="width: 8%">Qty.</th>
+                                <th style="width: 8%">Dis%</th>
+                                <th style="width: 8%">GST%</th>
+                                <th style="width: 17%">Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productRows">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer Section -->
+                <div class="row border-top border-dark mt-auto">
+                    <div class="col-7 border-end border-dark p-2">
+                        <h6 class="mb-2">terms & conditions:</h6>
+                        <p class="mb-0">Goods once sold will not be taken bake or exchange.</p>
+                    </div>
+                    <div class="col-5 p-2">
+                        <div class="row mb-2">
+                            <div class="col-5">sub-Total</div>
+                            <div class="col-7">
+                                <input type="text" class="form-control-plain text-end" id="subTotal" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-5">GST</div>
+                            <div class="col-7">
+                                <input type="text" class="form-control-plain text-end" id="gstTotal" readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Grand total</div>
+                            <div class="col-7">
+                                <input type="text" class="form-control-plain text-end" id="grandTotal" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signature -->
+                <div class="text-end mt-4 mb-2">
+                    <p class="mb-1">For ARMAN MEDICAL STORE</p>
+                    <p class="mt-4">Authorised Signatory</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medicine List Tab -->
+        <div class="tab-pane fade page-break" id="medicines">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3>Medicine List</h3>
+                <button class="btn btn-primary d-print-none" id="addMedicine">
+                    <i class="fas fa-plus"></i> Add New Medicine
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table" id="medicineList">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Batch No.</th>
+                            <th>Expiry Date</th>
+                            <th>MRP</th>
+                            <th class="d-print-none">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Customer Records Tab -->
+        <div class="tab-pane fade page-break" id="customers">
+            <h3>Customer Purchase Records</h3>
+            <div class="table-responsive">
+                <table class="table" id="customerRecords">
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Invoice No.</th>
+                            <th>Customer Name</th>
+                            <th>Phone</th>
+                            <th>Total Amount</th>
+                            <th class="d-print-none">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add/Edit Medicine Modal Template -->
+<template id="medicineModalTemplate">
+    <div class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Medicine</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="medicineForm">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Batch No.</label>
+                            <input type="text" class="form-control" name="batch" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="date" class="form-control" name="expiry" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">MRP</label>
+                            <input type="number" step="0.01" class="form-control" name="mrp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">GST %</label>
+                            <input type="number" step="0.01" class="form-control" name="gst" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveMedicine">Save Medicine</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/invoice.js') }}"></script>
+{% endblock %}
